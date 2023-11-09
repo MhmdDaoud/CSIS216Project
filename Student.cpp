@@ -88,6 +88,10 @@ void Student::setStudentLastName(const string name)
     }
 }
 
+void Student::setStudentMajor(const string major) {
+    this->major = major;
+}
+
 void Student::setGpa(const float gpa)
 {
     if (gpa > 0)
