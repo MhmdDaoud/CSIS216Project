@@ -1,0 +1,12 @@
+# ninja log v5
+3	436	7212190790617952	CMakeFiles/Project.dir/main.cpp.obj	cf3c296ae7635316
+567	1237	7212186100585498	Project.exe	6aab72f4b3652df6
+0	16	0	clean	7c0168816f9cf07a
+1	233	7212191969505878	build.ninja	bea74e8fb7657731
+23	741	7212192041364837	CMakeFiles/Project.dir/CourseList.cpp.obj	dae03fb2246d49ba
+10	743	7212192041394764	CMakeFiles/Project.dir/Course.cpp.obj	8ef659368f4b7cc4
+45	749	7212192041444646	CMakeFiles/Project.dir/Student.cpp.obj	24c4f34cac8fa8bb
+34	773	7212192041693973	CMakeFiles/Project.dir/StudentList.cpp.obj	f80b257f3910af00
+773	1197	7212192045842873	Project.exe	cbaae21fb9c2db8e
+4	478	7212228716982388	CMakeFiles/Project.dir/main.cpp.obj	cf3c296ae7635316
+503	1100	7212228723119779	Project.exe	cbaae21fb9c2db8e
