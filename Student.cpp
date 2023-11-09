@@ -1,9 +1,9 @@
 #include "Student.h"
 
 void Student :: Init(const string studentId = "N/A", const string firstName = "N/A", const string lastName = "N/A",
-          const float gpa = -1, const string academicStatus = "N/A")
+          const string major = "N/A", const float gpa = -1, const string academicStatus = "N/A")
 {
-    setStudent(studentId, firstName, lastName, gpa, academicStatus);
+    setStudent(studentId, firstName, lastName, major, gpa, academicStatus);
 }
 
 CourseList &Student::getRegisteredCourses()
@@ -20,6 +20,11 @@ string Student::getStudentName() const
     return lastName + ", " + firstName;
 }
 
+string Student::getStudentMajor() const
+{
+    return major;
+}
+
 float Student::getStudentGpa() const
 {
     return gpa;
@@ -31,11 +36,12 @@ string Student::getStudentAcademicStatus() const
 }
 
 void Student::setStudent(const string studentId, const string firstName, const string lastName,
-                         const float gpa, const string academicStatus)
+                         const string major, const float gpa, const string academicStatus)
 {
     setStudentId(studentId);
     setStudentFirstName(firstName);
     setStudentLastName(lastName);
+    setStudentMajor(major);
     setGpa(gpa);
     setAcademicStatus(academicStatus);
 }

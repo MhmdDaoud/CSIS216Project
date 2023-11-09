@@ -20,7 +20,7 @@ public:
 
     void insertAtEnd(const ElementType &);
     bool removeAtPosition(int);
-    ElementType getDataAtPosition(const int) const;
+    ElementType getDataAtPosition(int) const;
 
     LinkedListWithDummy &operator=(const LinkedListWithDummy &);
 
