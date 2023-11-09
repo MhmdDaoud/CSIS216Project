@@ -10,5 +10,6 @@ class CourseList :public LinkedListWithDummy<Course>
         bool dropByCourseId(const string &courseID);
         bool containsCourse(const string &courseID) const;
         int searchByCourseId(const string &courseID) const;
+        Course retrieveCourse(const string &courseCode);
 };
 #endif

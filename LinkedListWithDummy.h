@@ -44,7 +44,7 @@ protected:
     int mySize;
 };
 
-//implementation
+// Implementation
 
 template<typename ElementType>
 LinkedListWithDummy<ElementType>::LinkedListWithDummy() {
@@ -156,14 +156,12 @@ bool LinkedListWithDummy<ElementType>::removeAtPosition(int pos) {
 
 template<typename ElementType>
 void LinkedListWithDummy<ElementType>::insertAtEnd(const ElementType &data) {
-    NodePtr newNode = new Node(data);
+    NodePtr newPtr = new Node(data);
     NodePtr current = myFirst;
-    while (current != NULL) {
-        if (current->next == NULL)
-            break;
+    while (current->next != NULL) {
         current = current->next;
     }
-    current->next = newNode;
+    current->next = newPtr;
     mySize++;
 }
 

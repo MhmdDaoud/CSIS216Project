@@ -11,6 +11,20 @@ int StudentList::searchById(const string& studentID)const{
     return -1;
 }
 
+Student StudentList::retrieveStudent(const string& studentID) {
+    if (!isEmpty()) {
+        for (int i = 0; i < mySize; ++i) {
+            Student currStd = getDataAtPosition(i);
+            if (currStd.getStudentId() == studentID) {
+                return currStd;
+            }
+        }
+    }
+    Student g;
+    cout << "Student not found" << endl;
+    return g;
+}
+
 CourseList StudentList::getRegCoursesForStud(const string& studentID)const{
     if(!isEmpty()){
         int studPos = searchById(studentID);

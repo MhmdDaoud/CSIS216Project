@@ -22,13 +22,14 @@ public:
 
     void setStudent(const string, const string, const string, const string, const float, const string);
     void setStudentId(const string);
-    void setStudentFirstName(const string);
-    void setStudentLastName(const string);
+    void setStudentFirstName(const string&);
+    void setStudentLastName(const string&);
     void setStudentMajor(const string);
     void setGpa(const float);
     void setAcademicStatus(const string);
     void setRegisteredCourses(const CourseList&);
     void displayStudentInfo() const;
+    void simpleDisplay() const;
     void displayCourseInfo() const;
 
 private:
