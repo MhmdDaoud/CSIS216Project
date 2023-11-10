@@ -3,19 +3,13 @@
 
 #include "DoublyLinkedList.h"
 #include "Student.h"
-
-class StudentList : public DoublyLinkedList<Student> {
+class StudentList : public DoublyLinkedList<Student>
+{
 public:
     int searchById(const string &) const;
-
-    Student& retrieveStudent(const string &);
-
-    CourseList getRegCoursesForStud(const string &);
-
-    StudentList getStudRegInCourse(const string &);
-
+    Student retrieveStudent(const string &);
     bool removeById(const string &);
-
+    CourseList getRegCoursesForStud(const string &) const;
+    StudentList getStudRegInCourse(const string &) const;
 };
-
 #endif

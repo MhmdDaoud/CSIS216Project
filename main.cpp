@@ -5,13 +5,6 @@
 
 using namespace std;
 
-string toUppercase(string str) {
-    for (char &c: str) {
-        c = toupper(c);
-    }
-    return str;
-}
-
 void menu() {
     cout << "1. Display the list of non-registered students." << endl
          << "2. Display the list of offered courses." << endl
@@ -91,7 +84,7 @@ int main() {
         cin >> userChoice;
 
         switch (userChoice) {
-            case 1: // WORKING AS INTENDED
+            case 1:
                 // Displaying non-registered students
                 cout << left << "Students that didn't register yet." << endl
                      << setw(15) << "ID"
@@ -101,7 +94,7 @@ int main() {
                      << nonRegisteredStudents;
                 break;
 
-            case 2: // WORKING AS INTENDED
+            case 2:
                 // Displaying all offered courses
                 cout << left << setw(15) << "Course"
                      << setw(35) << "Title"
@@ -116,17 +109,11 @@ int main() {
                 for (int i = 0; i < registeredStudents.size(); ++i) {
                     Student currentStudent = registeredStudents.getDataAtPosition(i);
                     string currentID = currentStudent.getStudentId();
-                    cout << "Student:" << currentStudent.simpleDisplay(); // "ID - lastName, firstName"
+                    cout << "Student:";
+                    currentStudent.simpleDisplay(); // "ID - lastName, firstName"
                     CourseList regCourses = registeredStudents.getRegCoursesForStud(currentID);
-                    if (regCourses.size() > 0) {
-                        cout << "Registered Courses:" << endl;
-
-                        for (int j = 0; j < regCourses.size(); ++j) {
-                            Course currentCourse = regCourses.getDataAtPosition(j);
-                            cout << currentCourse.simpleDisplay() << endl; // "courseCode - courseTitle"
-                        }
-                    } else {
-                        cout << "\tNo registered courses" << endl;
+                    for (int j = 0; j < regCourses.size(); ++j) {
+                        cout << regCourses.getDataAtPosition(j).getCourseCode() << endl;
                     }
                 }
                 break;
@@ -136,7 +123,8 @@ int main() {
                 for (int i = 0; i < offeredCourses.size(); ++i) {
                     Course currentCourse = offeredCourses.getDataAtPosition(i);
                     string currentCode = currentCourse.getCourseCode();
-                    cout << "Course:" << currentCourse.simpleDisplay(); // "courseCode - courseTitle"
+                    cout << "Course:";
+                    currentCourse.simpleDisplay(); // "courseCode - courseTitle"
                     StudentList regStudents = registeredStudents.getStudRegInCourse(currentCode);
                     for (int j = 0; j < regStudents.size(); ++j) {
                         regStudents.getDataAtPosition(j).simpleDisplay(); // "ID - lastName, firstName"
@@ -150,7 +138,8 @@ int main() {
                 cout << "Enter the students ID:";
                 cin >> studentId;
                 Student currentStudent = registeredStudents.retrieveStudent(studentId);
-                cout << "Student:" << currentStudent.simpleDisplay(); // "ID - lastName, firstName"
+                cout << "Student:";
+                currentStudent.simpleDisplay(); // "ID - lastName, firstName"
                 CourseList regCourses = registeredStudents.getRegCoursesForStud(studentId);
                 for (int i = 0; i < regCourses.size(); ++i) {
                     regCourses.getDataAtPosition(i).simpleDisplay(); // "courseCode - courseTitle"
@@ -163,23 +152,25 @@ int main() {
                 string courseCode;
                 cout << "Enter the course code:";
                 cin >> courseCode;
-                Course currentCourse = offeredCourses.retrieveCourse(toUppercase(courseCode));
-                cout << "Course:" << currentCourse.simpleDisplay(); // "courseCode - courseTitle"
-                StudentList regStd = registeredStudents.getStudRegInCourse(toUppercase(courseCode));
+                Course currentCourse = offeredCourses.retrieveCourse(courseCode);
+                cout << "Course:";
+                currentCourse.simpleDisplay();
+                StudentList regStd = registeredStudents.getStudRegInCourse(courseCode);
                 for (int i = 0; i < regStd.size(); ++i) {
-                    regStd.getDataAtPosition(i).simpleDisplay(); // "ID - lastName, firstName"
+                    regStd.getDataAtPosition(i).simpleDisplay();
                 }
                 break;
             }
 
-            case 7: { // WORKING AS INTENDED
+            case 7: {
                 // Displaying student information
                 string studentId;
                 cout << "Enter the student ID:";
                 cin >> studentId;
                 Student currentStudent = registeredStudents.retrieveStudent(studentId);
-                cout << currentStudent.getStudentId();
-                if (!currentStudent.getStudentId().empty()) {
+                if (currentStudent.getStudentId() == "N/A") {
+                    cerr << "Student not found";
+                } else {
                     cout << "Student:" << endl
                          << "\tID: " << currentStudent.getStudentId() << endl
                          << "\tName: " << currentStudent.getStudentName() << endl
@@ -189,7 +180,7 @@ int main() {
                 break;
             }
 
-            case 8: { // WORKING AS INTENDED
+            case 8: {
                 // Registering a student
                 char userChar;
                 string studentId;
@@ -208,15 +199,13 @@ int main() {
                     string courseCode;
                     cout << endl << "Enter the course code:";
                     cin >> courseCode;
-                    if (offeredCourses.searchByCourseId(toUppercase(courseCode)) == -1) {
+                    if (offeredCourses.searchByCourseId(courseCode) == -1) {
                         cout << "Course is not offered." << endl;
-                        break;
                     } else {
-                        Course currentCourse = offeredCourses.retrieveCourse(toUppercase(courseCode));
+                        Course currentCourse = offeredCourses.retrieveCourse(courseCode);
                         regCourses.insertAtEnd(currentCourse);
                         cout << "Student registered" << endl;
-                        currentStudent.setRegisteredCourses(regCourses);
-                        cout << currentStudent.getRegisteredCourses();
+                        cout << regCourses;
                     }
                     cout << "Do you need to add more courses [Y] yes or [N] no:";
                     cin >> userChar;
@@ -232,7 +221,8 @@ int main() {
                 cin >> studentId;
                 Student currentStd = registeredStudents.retrieveStudent(studentId);
                 if (currentStd.getStudentId() != studentId) break;
-                cout << "Student:" << currentStd.simpleDisplay();
+                cout << "Student:";
+                currentStd.simpleDisplay();
                 CourseList studentCourses = currentStd.getRegisteredCourses();
                 cout << "Courses:" << endl;
                 for (int i = 0; i < studentCourses.size(); ++i) {
@@ -247,7 +237,7 @@ int main() {
                     cout << "Enter the course code:";
                     cin >> courseCode;
 
-                    Course currentCourse = offeredCourses.retrieveCourse(toUppercase(courseCode));
+                    Course currentCourse = offeredCourses.retrieveCourse(courseCode);
                     if (currentCourse.getCourseCode() != courseCode) break;
                     int courseIndex = studentCourses.searchByCourseId(courseCode);
 
@@ -263,6 +253,7 @@ int main() {
 
                         default:
                             cout << "Invalid input" << endl;
+
                             break;
                     }
 

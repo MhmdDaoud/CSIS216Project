@@ -64,8 +64,8 @@ void Course::display() const {
          << setw(15) << capacity << endl;
 }
 
-string Course::simpleDisplay() const {
-    return courseCode + " - " + courseTitle + '\n';
+void Course::simpleDisplay() const {
+    cout << courseCode << " - " << courseTitle << endl;
 }
 
 ostream &operator<<(ostream &out, const Course &rhs) {
