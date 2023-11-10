@@ -18,12 +18,12 @@ bool CourseList::containsCourse(const string &courseID) const {
     return false;
 }
 
-int CourseList::searchByCourseId(const string &courseID) const {
+int CourseList::searchByCourseId(const string &courseCode) const {
     if (!isEmpty()) {
         int counter = 0;
         while (counter < mySize) {
-            Course currCourse = getDataAtPosition(counter);
-            if (currCourse.getCourseCode() == courseID) {
+            const Course& currCourse = getDataAtPosition(counter);
+            if (currCourse.getCourseCode() == courseCode) {
                 return counter;
             }
             counter++;
@@ -32,7 +32,7 @@ int CourseList::searchByCourseId(const string &courseID) const {
     return -1;
 }
 
-Course CourseList::retrieveCourse(const std::string &courseCode) {
+Course CourseList::retrieveCourse(const string &courseCode) {
     if (!isEmpty()) {
         int counter = 0;
         while (counter < mySize) {
@@ -43,7 +43,6 @@ Course CourseList::retrieveCourse(const std::string &courseCode) {
             counter++;
         }
     }
-    Course g;
-    cout << "Course not found" << endl;
-    return g;
+    throw runtime_error("Course not found");
 }
+

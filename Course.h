@@ -24,7 +24,7 @@ public:
 	void setCourse(const string, const string, const int, const int);
 
 	void display() const;
-    void simpleDisplay() const;
+    string simpleDisplay() const;
 
 private:
 	string courseCode;

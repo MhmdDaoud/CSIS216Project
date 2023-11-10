@@ -91,8 +91,8 @@ void Student::displayStudentInfo() const {
          << setw(15) << academicStatus;
 }
 
-void Student::simpleDisplay() const {
-    cout << studentId << " - " << lastName << ", " << firstName << endl;
+string Student::simpleDisplay() const {
+    return studentId + " - " + lastName + ", " + firstName + '\n';
 }
 
 void Student::displayCourseInfo() const {

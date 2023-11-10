@@ -1,9 +1,10 @@
 #include "StudentList.h"
-int StudentList::searchById(const string& studentID)const{
-    if(!isEmpty()){
-        for(int i = 0; i < mySize; i++){
+
+int StudentList::searchById(const string &studentID) const {
+    if (!isEmpty()) {
+        for (int i = 0; i < mySize; i++) {
             Student currStd = getDataAtPosition(i);
-            if(currStd.getStudentId() == studentID){
+            if (currStd.getStudentId() == studentID) {
                 return i;
             }
         }
@@ -11,7 +12,7 @@ int StudentList::searchById(const string& studentID)const{
     return -1;
 }
 
-Student StudentList::retrieveStudent(const string& studentID) {
+Student& StudentList::retrieveStudent(const string &studentID) {
     if (!isEmpty()) {
         for (int i = 0; i < mySize; ++i) {
             Student currStd = getDataAtPosition(i);
@@ -20,43 +21,42 @@ Student StudentList::retrieveStudent(const string& studentID) {
             }
         }
     }
-    Student g;
-    cout << "Student not found" << endl;
-    return g;
+    throw runtime_error("Student not found");
 }
 
-CourseList StudentList::getRegCoursesForStud(const string& studentID)const{
-    if(!isEmpty()){
+CourseList StudentList::getRegCoursesForStud(const string &studentID) {
+    CourseList g;
+    if (!isEmpty()) {
         int studPos = searchById(studentID);
-        if(studPos != -1){
+        if (studPos != -1) {
             Student s = getDataAtPosition(studPos);
             return s.getRegisteredCourses();
         }
     }
-    CourseList g;
+    cout << "Could not find student courses" << endl;
     return g;
 }
 
-StudentList StudentList::getStudRegInCourse(const string& courseID)const{
-    if(!isEmpty()){
-        StudentList students;
-        for(int i = 0; i < mySize; i++){
+StudentList StudentList::getStudRegInCourse(const string &courseID) {
+    StudentList students;
+    if (!isEmpty()) {
+        for (int i = 0; i < mySize; i++) {
             Student currStd = getDataAtPosition(i);
             CourseList currStdRegCourses = currStd.getRegisteredCourses();
-            if((currStdRegCourses).containsCourse(courseID)){
+            if (currStdRegCourses.containsCourse(courseID)) {
                 students.insertAtEnd(currStd);
             }
         }
         return students;
     }
-    StudentList g;
-    return g;
+    return students;
 }
 
-bool StudentList::removeById(const string& studentID){
-    if(!isEmpty()){
+
+bool StudentList::removeById(const string &studentID) {
+    if (!isEmpty()) {
         int studPos = searchById(studentID);
-        if(studPos != -1){
+        if (studPos != -1) {
             return removeAtPosition(studPos);
         }
     }

@@ -8,28 +8,43 @@
 
 using namespace std;
 
-class Student
-{
+class Student {
 public:
     void Init(const string studentId, const string firstName, const string lastName,
               const string major, const float gpa, const string academicStatus);
+
     string getStudentId() const;
+
     string getStudentName() const;
+
     string getStudentMajor() const;
+
     float getStudentGpa() const;
+
     string getStudentAcademicStatus() const;
-    CourseList& getRegisteredCourses();
+
+    CourseList &getRegisteredCourses();
 
     void setStudent(const string, const string, const string, const string, const float, const string);
+
     void setStudentId(const string);
-    void setStudentFirstName(const string&);
-    void setStudentLastName(const string&);
+
+    void setStudentFirstName(const string &);
+
+    void setStudentLastName(const string &);
+
     void setStudentMajor(const string);
+
     void setGpa(const float);
+
     void setAcademicStatus(const string);
-    void setRegisteredCourses(const CourseList&);
+
+    void setRegisteredCourses(const CourseList &);
+
     void displayStudentInfo() const;
-    void simpleDisplay() const;
+
+    string simpleDisplay() const;
+
     void displayCourseInfo() const;
 
 private:
@@ -43,5 +58,7 @@ private:
 
     bool validateId(const string) const;
 };
+
 ostream &operator<<(ostream &, const Student &);
+
 #endif
