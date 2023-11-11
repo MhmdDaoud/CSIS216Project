@@ -1,0 +1,11 @@
+10
+A2101324 Bilal Issa 3.5 Computer Science
+A2101444 John Dow 2.7 Psychology
+A2201234 George Khoury 3.1 Biology
+A2201983 Nada Trabay 3.9 Mechanical Engineering
+A2210022 Carol Grall 3.2 English Literature
+A2210210 Iman Abboud 2.7 Biology
+A2305234 Amir Hachem 2.3 Environmental Science
+A2311067 Roula Hmade 1.9 Computer Science
+A2311200 Belle Grall 2.1 Marketing
+A2312902 Ibrahim Mroueh 1.8 Economics

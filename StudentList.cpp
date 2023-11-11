@@ -1,9 +1,18 @@
+/*-- StudentList.cpp-------------------------------------------------------
+   This file implements Student member functions.
+-------------------------------------------------------------------------*/
 #include "StudentList.h"
-int StudentList::searchById(const string& studentID)const{
-    if(!isEmpty()){
-        for(int i = 0; i < mySize; i++){
+
+//--- Definition of searchById()
+int StudentList::searchById(const string &studentID) const
+{
+    if (!isEmpty())
+    {
+        for (int i = 0; i < mySize; i++)
+        {
             Student currStd = getDataAtPosition(i);
-            if(currStd.getStudentId() == studentID){
+            if (currStd.getStudentId() == studentID)
+            {
                 return i;
             }
         }
@@ -11,52 +20,63 @@ int StudentList::searchById(const string& studentID)const{
     return -1;
 }
 
-Student StudentList::retrieveStudent(const string& studentID) {
-    if (!isEmpty()) {
-        for (int i = 0; i < mySize; ++i) {
-            Student currStd = getDataAtPosition(i);
-            if (currStd.getStudentId() == studentID) {
-                return currStd;
-            }
+//--- Definition of retrieveStudent()
+Student &StudentList::retrieveStudent(const string &studentID)
+{
+    for (int i = 0; i < mySize; ++i)
+    {
+        Student &currStudent = getDataAtPosition(i);
+        if (currStudent.getStudentId() == studentID)
+        {
+            return currStudent;
         }
     }
-    Student g;
-    cout << "Student not found" << endl;
-    return g;
+    throw runtime_error("Student Not Found");
 }
 
-CourseList StudentList::getRegCoursesForStud(const string& studentID)const{
-    if(!isEmpty()){
+//--- Definition of getRegCoursesForStud()
+CourseList &StudentList::getRegCoursesForStud(const string &studentID)
+{
+    if (!isEmpty())
+    {
         int studPos = searchById(studentID);
-        if(studPos != -1){
-            Student s = getDataAtPosition(studPos);
+        if (studPos != -1)
+        {
+            Student &s = getDataAtPosition(studPos);
             return s.getRegisteredCourses();
         }
     }
-    CourseList g;
-    return g;
+    throw runtime_error("Could not find student courses");
 }
 
-StudentList StudentList::getStudRegInCourse(const string& courseID)const{
-    if(!isEmpty()){
+//--- Definition of getStudRegInCourse()
+StudentList StudentList::getStudRegInCourse(const string &courseID)
+{
+    if (!isEmpty())
+    {
         StudentList students;
-        for(int i = 0; i < mySize; i++){
-            Student currStd = getDataAtPosition(i);
-            CourseList currStdRegCourses = currStd.getRegisteredCourses();
-            if((currStdRegCourses).containsCourse(courseID)){
+        for (int i = 0; i < mySize; i++)
+        {
+            Student &currStd = getDataAtPosition(i);
+            CourseList &currStdRegCourses = currStd.getRegisteredCourses();
+            if (currStdRegCourses.containsCourse(courseID))
+            {
                 students.insertAtEnd(currStd);
             }
         }
         return students;
     }
-    StudentList g;
-    return g;
+    throw runtime_error("Student List is Empty.");
 }
 
-bool StudentList::removeById(const string& studentID){
-    if(!isEmpty()){
+//--- Definition of removeById()
+bool StudentList::removeById(const string &studentID)
+{
+    if (!isEmpty())
+    {
         int studPos = searchById(studentID);
-        if(studPos != -1){
+        if (studPos != -1)
+        {
             return removeAtPosition(studPos);
         }
     }
